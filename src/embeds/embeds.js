@@ -7,7 +7,7 @@ const ENV = process.env;
 const github = 'https://github.com/hmes98318/Music-Disc';
 const bot_version = require('../../package.json').version;
 
-const bot_name = typeof (process.env.BOT_NAME) === 'undefined' ? 'Music Disc' : (ENV.BOT_NAME);
+const bot_name = typeof (process.env.BOT_NAME) === 'undefined' ? 'DilbotZ' : (ENV.BOT_NAME);
 const color = typeof (process.env.EMBEDS_COLOR) === 'undefined' ? '#FFFFFF' : (ENV.EMBEDS_COLOR);
 
 
@@ -18,7 +18,7 @@ module.exports = {
             .setTitle(music_title)
             .setURL(music_url)
             .setThumbnail(music_thumbnail)
-            .addFields({ name: status, value: `**Duration**: \`${music_length}\` | ${settings}`, inline: true })
+            .addFields({ name: status, value: `**Durasi**: \`${music_length}\` | ${settings}`, inline: true })
             .setTimestamp()
         return Embed_play;
     },

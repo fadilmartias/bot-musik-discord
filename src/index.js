@@ -29,9 +29,9 @@ let client = new Client({
 
 
 client.config = {
-    name: 'Music Disc',
-    prefix: '-',
-    playing: '+help | music',
+    name: 'DilbotZ',
+    prefix: 'z!',
+    playing: 'z!help | music',
     defaultVolume: 50,
     maxVolume: 100,
     autoLeave: true,
@@ -157,7 +157,7 @@ const loadEvents = () => {
 
 
 const loadCommands = () => {
-    console.log(`-> loading Commands ......`);
+    console.log(`-> Bentar lagi loading ......`);
     return new Promise((resolve, reject) => {
         const files = fs.readdirSync(`${__dirname}/commands/`).filter(file => file.endsWith('.js'));
 
@@ -175,7 +175,7 @@ const loadCommands = () => {
             }
         };
         console.log(`+---------------------------+`);
-        console.log(`${color.grey}-- loading Commands finished --${color.white}`);
+        console.log(`${color.grey}-- Oke siap --${color.white}`);
 
         resolve();
     })
@@ -201,12 +201,12 @@ const settings = (queue, song) =>
 
 player.events.on('playerStart', (queue, track) => {
     if (queue.repeatMode !== 0) return;
-    queue.metadata.channel.send({ embeds: [embed.Embed_play("Playing", track.title, track.url, track.duration, track.thumbnail, settings(queue))] });
+    queue.metadata.channel.send({ embeds: [embed.Embed_play("Sedang memutar", track.title, track.url, track.duration, track.thumbnail, settings(queue))] });
 });
 
 player.events.on('audioTrackAdd', (queue, track) => {
     if (queue.isPlaying())
-        queue.metadata.channel.send({ embeds: [embed.Embed_play("Added", track.title, track.url, track.duration, track.thumbnail, settings(queue))] });
+        queue.metadata.channel.send({ embeds: [embed.Embed_play("Ditambahkan", track.title, track.url, track.duration, track.thumbnail, settings(queue))] });
 });
 
 player.events.on('playerError', (queue, error) => {

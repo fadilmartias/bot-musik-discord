@@ -5,13 +5,13 @@ module.exports = async (client, oldState, newState) => {
     const display = client.config.displayVoiceState;
 
     if (newState.channelId === null) {
-        if (display) console.log(`${color.grey}-- ${newState.member.user.username} left channel${color.white}`);
+        if (display) console.log(`${color.grey}-- ${newState.member.user.username} meninggalkan channel${color.white}`);
     }
     else if (oldState.channelId === null) {
-        if (display) console.log(`${color.grey}-- ${newState.member.user.username} joined channel ${newState.channel.name}${color.white}`);
+        if (display) console.log(`${color.grey}-- ${newState.member.user.username} bergabung ke channel ${newState.channel.name}${color.white}`);
     }
     else {
-        if (display) console.log(`${color.grey}-- ${newState.member.user.username} moved channel ${oldState.channel.name} to ${newState.channel.name}${color.white}`);
+        if (display) console.log(`${color.grey}-- ${newState.member.user.username} pindah dari channel ${oldState.channel.name} channel ${newState.channel.name}${color.white}`);
 
 
         // If the member who left the channel is not bot, check if the channel still has members

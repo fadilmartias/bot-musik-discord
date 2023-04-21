@@ -1,7 +1,7 @@
 module.exports = {
     name: 'loop',
     aliases: ['lp'],
-    description: 'Turns the music loop mode on or off',
+    description: 'Putar ulang musik on/off',
     usage: 'loop <all/one/off>',
     voiceChannel: true,
     options: [
@@ -32,7 +32,7 @@ module.exports = {
         const prefix = client.config.prefix;
 
         if (!queue || !queue.isPlaying())
-            return message.reply({ content: `❌ | There is no music currently playing.`, allowedMentions: { repliedUser: false } });
+            return message.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy.`, allowedMentions: { repliedUser: false } });
 
         let mode = null;
         const methods = ['Off', 'Single', 'All'];
@@ -56,14 +56,14 @@ module.exports = {
         queue.setRepeatMode(mode);
 
         message.react('👍');
-        return message.reply({ content: `Set loop to \`${methods[mode]}\``, allowedMentions: { repliedUser: false } });
+        return message.reply({ content: `Loop udah diset ke \`${methods[mode]}\``, allowedMentions: { repliedUser: false } });
     },
 
     slashExecute(client, interaction) {
         const queue = client.player.nodes.get(interaction.guild.id);
 
         if (!queue || !queue.isPlaying())
-            return interaction.reply({ content: `❌ | There is no music currently playing.`, allowedMentions: { repliedUser: false } });
+            return interaction.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy.`, allowedMentions: { repliedUser: false } });
 
 
         const methods = {
@@ -79,6 +79,6 @@ module.exports = {
 
         queue.setRepeatMode(methods[interaction.options.getString("mode")]);
 
-        return interaction.reply({ content: `Set loop to \`${names[interaction.options.getString("mode")]}\``, allowedMentions: { repliedUser: false } });
+        return interaction.reply({ content: `Loop udah diset ke \`${names[interaction.options.getString("mode")]}\``, allowedMentions: { repliedUser: false } });
     },
 };

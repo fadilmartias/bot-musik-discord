@@ -5,7 +5,7 @@ module.exports = {
     name: 'help',
     aliases: ['h'],
     showHelp: false,
-    description: 'Get commands help',
+    description: 'Dapatin daftar command bot',
     usage: 'help [command]',
     options: [
         {
@@ -44,7 +44,7 @@ module.exports = {
                 }
             });
 
-            if (!Boolean(found)) return message.reply({ content: '❌ | The command not found.', allowedMentions: { repliedUser: false } });
+            if (!Boolean(found)) return message.reply({ content: '❌ | Command dak ada.', allowedMentions: { repliedUser: false } });
         }
     },
 
@@ -78,7 +78,7 @@ module.exports = {
                 }
             });
 
-            if (!Boolean(found)) return interaction.reply({ content: '❌ | The command not found.', allowedMentions: { repliedUser: false } });
+            if (!Boolean(found)) return interaction.reply({ content: '❌ | Command dak ada.', allowedMentions: { repliedUser: false } });
         }
     },
 };

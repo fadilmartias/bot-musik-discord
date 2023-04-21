@@ -1,7 +1,7 @@
 module.exports = {
     name: 'shuffle',
     aliases: ['random'],
-    description: 'Shuffle Playlist',
+    description: 'Acak Playlist',
     usage: 'random',
     voiceChannel: true,
     options: [],
@@ -10,7 +10,7 @@ module.exports = {
         const queue = client.player.nodes.get(message.guild.id);
 
         if (!queue || !queue.isPlaying())
-            return message.reply({ content: `❌ | There is no music currently playing!.`, allowedMentions: { repliedUser: false } });
+            return message.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy!.`, allowedMentions: { repliedUser: false } });
 
         queue.tracks.shuffle();
         return message.react('👍');
@@ -20,9 +20,9 @@ module.exports = {
         const queue = client.player.nodes.get(interaction.guild.id);
 
         if (!queue || !queue.isPlaying())
-            return interaction.reply({ content: `❌ | There is no music currently playing!.`, allowedMentions: { repliedUser: false } });
+            return interaction.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy!.`, allowedMentions: { repliedUser: false } });
 
         queue.tracks.shuffle();
-        return interaction.reply('✅ | Music shuffled.');
+        return interaction.reply('✅ | Okee dah diacak.');
     },
 };

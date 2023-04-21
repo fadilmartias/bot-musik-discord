@@ -5,7 +5,7 @@ module.exports = {
     name: 'server',
     aliases: [],
     showHelp: false,
-    description: 'Show currently active servers',
+    description: 'Nampilin server yang lagi aktif',
     usage: 'server',
     options: [],
 

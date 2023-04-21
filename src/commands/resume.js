@@ -1,7 +1,7 @@
 module.exports = {
     name: 'resume',
     aliases: [],
-    description: 'Resume paused song',
+    description: 'Lanjutin musik yang dipause',
     usage: 'resume',
     voiceChannel: true,
     options: [],
@@ -10,19 +10,19 @@ module.exports = {
         const queue = client.player.nodes.get(message.guild.id);
 
         if (!queue)
-            return message.reply({ content: `❌ | There is no music currently playing.`, allowedMentions: { repliedUser: false } });
+            return message.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy.`, allowedMentions: { repliedUser: false } });
 
         const success = queue.node.resume();
-        return success ? message.react('▶️') : message.reply({ content: `❌ | Something went wrong.`, allowedMentions: { repliedUser: false } });
+        return success ? message.react('▶️') : message.reply({ content: `❌ | Ada yang ga beres nih.`, allowedMentions: { repliedUser: false } });
     },
 
     slashExecute(client, interaction) {
         const queue = client.player.nodes.get(interaction.guild.id);
 
         if (!queue)
-            return interaction.reply({ content: `❌ | There is no music currently playing.`, allowedMentions: { repliedUser: false } });
+            return interaction.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy.`, allowedMentions: { repliedUser: false } });
 
         const success = queue.node.resume();
-        return success ? interaction.reply("▶️ | Music resumed.") : interaction.reply({ content: `❌ | Something went wrong.`, allowedMentions: { repliedUser: false } });
+        return success ? interaction.reply("▶️ | Lanjuttt.") : interaction.reply({ content: `❌ | Ada yang ga beres nih.`, allowedMentions: { repliedUser: false } });
     },
 };

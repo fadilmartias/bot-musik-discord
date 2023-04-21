@@ -1,7 +1,7 @@
 module.exports = {
     name: 'leave',
     aliases: ['stop'],
-    description: 'Leave current voice channel',
+    description: 'Tinggalin voice channel sekarang',
     usage: 'leave',
     voiceChannel: true,
     options: [],
@@ -10,7 +10,7 @@ module.exports = {
         const queue = client.player.nodes.get(message.guild.id);
 
         if (!queue || !queue.isPlaying())
-            return message.reply({ content: `❌ | There is no music currently playing.`, allowedMentions: { repliedUser: false } });
+            return message.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy.`, allowedMentions: { repliedUser: false } });
 
         if (!queue.deleted)
             queue.delete();
@@ -22,11 +22,11 @@ module.exports = {
         const queue = client.player.nodes.get(interaction.guild.id);
 
         if (!queue || !queue.isPlaying())
-            return interaction.reply({ content: `❌ | There is no music currently playing.`, allowedMentions: { repliedUser: false } });
+            return interaction.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy.`, allowedMentions: { repliedUser: false } });
 
         if (!queue.deleted)
             queue.delete();
 
-        return interaction.reply('✅ | Bot leave.');
+        return interaction.reply('✅ | Bye wibu.');
     },
 };

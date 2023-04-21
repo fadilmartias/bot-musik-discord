@@ -5,13 +5,13 @@ const { URL } = require('url');
 module.exports = {
     name: 'search',
     aliases: ['find'],
-    description: 'Enter song name to search',
+    description: 'Masukin judul lagu atau url nya juga bolee',
     usage: 'search <URL/song name>',
     voiceChannel: true,
     options: [
         {
             name: "search",
-            description: "The song name",
+            description: "Judul lagu",
             type: 3,
             required: true
         }
@@ -19,7 +19,7 @@ module.exports = {
 
     async execute(client, message, args) {
         if (!args[0])
-            return message.reply({ content: `❌ | Please enter a valid song name.`, allowedMentions: { repliedUser: false } });
+            return message.reply({ content: `❌ | Salah tu namanya, masukin yang bener atuh.`, allowedMentions: { repliedUser: false } });
 
         const str = args.join(' ');
         let queryType = '';
@@ -33,11 +33,11 @@ module.exports = {
         })
             .catch((error) => {
                 console.log(error);
-                return message.reply({ content: `❌ | The service is experiencing some problems, please try again.`, allowedMentions: { repliedUser: false } });
+                return message.reply({ content: `❌ | Ada yang ga beres nih.`, allowedMentions: { repliedUser: false } });
             });
 
         if (!results || !results.hasTracks())
-            return message.reply({ content: `❌ | No results found.`, allowedMentions: { repliedUser: false } });
+            return message.reply({ content: `❌ | Ga nemu gua lagunya.`, allowedMentions: { repliedUser: false } });
 
 
         const queue = await client.player.nodes.create(message.guild, {
@@ -61,7 +61,7 @@ module.exports = {
         } catch (error) {
             console.log(error);
             if (!queue?.deleted) queue?.delete();
-            return message.reply({ content: `❌ | I can't join audio channel.`, allowedMentions: { repliedUser: false } });
+            return message.reply({ content: `❌ | Gabisa join gua cok.`, allowedMentions: { repliedUser: false } });
         }
 
         await message.react('👍');
@@ -73,11 +73,11 @@ module.exports = {
                 await queue.node.play()
                     .catch((error) => {
                         console.log(error);
-                        return message.reply({ content: `❌ | I can't play this track.`, allowedMentions: { repliedUser: false } });
+                        return message.reply({ content: `❌ | Gabisa gua mainin ni lagu.`, allowedMentions: { repliedUser: false } });
                     });
             }
 
-            return message.reply({ content: "✅ | Music added.", allowedMentions: { repliedUser: false } });
+            return message.reply({ content: "✅ | Sipp! Musik dah gua tambahin.", allowedMentions: { repliedUser: false } });
         }
         else {
             let select = new StringSelectMenuBuilder()
@@ -86,7 +86,7 @@ module.exports = {
                 .setOptions(results.tracks.map(x => {
                     return {
                         label: x.title.length >= 25 ? x.title.substring(0, 22) + "..." : x.title,
-                        description: x.title.length >= 25 ? `[${x.duration}] ${x.title}`.substring(0, 100) : `Duration: ${x.duration}`,
+                        description: x.title.length >= 25 ? `[${x.duration}] ${x.title}`.substring(0, 100) : `Durasi: ${x.duration}`,
                         value: x.id
                     }
                 }));
@@ -107,18 +107,18 @@ module.exports = {
                     await queue.node.play()
                         .catch((error) => {
                             console.log(error);
-                            return message.reply({ content: `❌ | I can't play this track.`, allowedMentions: { repliedUser: false } });
+                            return message.reply({ content: `❌ | Gabisa gua mainin ni lagu.`, allowedMentions: { repliedUser: false } });
                         });
                 }
 
                 i.deferUpdate();
-                return msg.edit({ content: "✅ | Music added.", components: [], allowedMentions: { repliedUser: false } });
+                return msg.edit({ content: "✅ | Sipp! Musik dah gua tambahin.", components: [], allowedMentions: { repliedUser: false } });
             });
 
             collector.on("end", (collected, reason) => {
                 if (reason == "time" && collected.size == 0) {
                     if (!queue?.deleted && !queue.isPlaying()) queue?.delete();
-                    return msg.edit({ content: "❌ | Time expired.", components: [], allowedMentions: { repliedUser: false } });
+                    return msg.edit({ content: "❌ | Basii.", components: [], allowedMentions: { repliedUser: false } });
                 }
             });
         }
@@ -139,11 +139,11 @@ module.exports = {
         })
             .catch((error) => {
                 console.log(error);
-                return interaction.reply({ content: `❌ | The service is experiencing some problems, please try again.`, allowedMentions: { repliedUser: false } });
+                return interaction.reply({ content: `❌ | Ada yang ga beres nih.`, allowedMentions: { repliedUser: false } });
             });
 
         if (!results || !results.hasTracks())
-            return interaction.editReply({ content: `❌ | No search results found.`, allowedMentions: { repliedUser: false } });
+            return interaction.editReply({ content: `❌ | Ganemu gua cok.`, allowedMentions: { repliedUser: false } });
 
 
         const queue = await client.player.nodes.create(interaction.guild, {
@@ -165,7 +165,7 @@ module.exports = {
                 await queue.connect(interaction.member.voice.channel);
         } catch {
             await client.player.deleteQueue(interaction.guild.id);
-            return interaction.editReply({ content: `❌ | I can't join audio channel.`, allowedMentions: { repliedUser: false } });
+            return interaction.editReply({ content: `❌ | Gabisa join gua cok.`, allowedMentions: { repliedUser: false } });
         }
 
 
@@ -176,11 +176,11 @@ module.exports = {
                 await queue.node.play()
                     .catch((error) => {
                         console.log(error);
-                        return interaction.reply({ content: `❌ | I can't play this track.`, allowedMentions: { repliedUser: false } });
+                        return interaction.reply({ content: `❌ | Gabisa gua mainin ni lagu.`, allowedMentions: { repliedUser: false } });
                     });
             }
 
-            return interaction.editReply("✅ | Music added.");
+            return interaction.editReply("✅ | Sipp! Musik dah gua tambahin.");
         }
         else {
             let select = new StringSelectMenuBuilder()
@@ -189,7 +189,7 @@ module.exports = {
                 .setOptions(results.tracks.map(x => {
                     return {
                         label: x.title.length >= 25 ? x.title.substring(0, 22) + "..." : x.title,
-                        description: x.title.length >= 25 ? `[${x.duration}] ${x.title}`.substring(0, 100) : `Duration: ${x.duration}`,
+                        description: x.title.length >= 25 ? `[${x.duration}] ${x.title}`.substring(0, 100) : `Durasi: ${x.duration}`,
                         value: x.id
                     }
                 }));
@@ -210,18 +210,18 @@ module.exports = {
                     await queue.node.play()
                         .catch((error) => {
                             console.log(error);
-                            return interaction.reply({ content: `❌ | I can't play this track.`, allowedMentions: { repliedUser: false } });
+                            return interaction.reply({ content: `❌ | Gabisa gua mainin ni lagu.`, allowedMentions: { repliedUser: false } });
                         });
                 }
 
                 i.deferUpdate();
-                return interaction.editReply({ content: "✅ | Music added.", components: [] });
+                return interaction.editReply({ content: "✅ | Sipp! Musik dah gua tambahin.", components: [] });
             });
 
             collector.on("end", (collected, reason) => {
                 if (reason == "time" && collected.size == 0) {
                     if (!queue?.deleted && !queue.isPlaying()) queue?.delete();
-                    return interaction.editReply({ content: "❌ | Time expired.", components: [] });
+                    return interaction.editReply({ content: "❌ | Basii.", components: [] });
                 }
             });
         }

@@ -5,7 +5,7 @@ const embed = require('../embeds/embeds');
 module.exports = {
     name: 'status',
     aliases: ['usage'],
-    description: 'Show the bot status',
+    description: 'Tampilin status bot',
     usage: 'status',
     options: [],
 

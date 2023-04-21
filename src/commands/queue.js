@@ -4,7 +4,7 @@ const embed = require('../embeds/embeds');
 module.exports = {
     name: 'queue',
     aliases: ['q', 'list'],
-    description: 'Show playlist',
+    description: 'Nampilin antrian',
     usage: 'queue',
     voiceChannel: true,
     options: [],
@@ -13,7 +13,7 @@ module.exports = {
         const queue = client.player.nodes.get(message.guild.id);
 
         if (!queue || !queue.currentTrack)
-            return message.reply({ content: `❌ | There is no music currently playing.`, allowedMentions: { repliedUser: false } });
+            return message.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy.`, allowedMentions: { repliedUser: false } });
 
 
         const tracks = queue.tracks.map((track, index) => `${++index}. ${track.title}`);
@@ -26,21 +26,21 @@ module.exports = {
         }
         else if (tracks.length > 9) {
             tracksQueue = tracks.slice(0, 10).join('\n');
-            tracksQueue += `\nand ${tracks.length - 10} other songs`;
+            tracksQueue += `\nand ${tracks.length - 10} lagu lainnya`;
         }
         else {
             tracksQueue = tracks.join('\n');
         }
 
         let loopStatus = queue.repeatMode ? (queue.repeatMode === 2 ? 'All' : 'One') : 'Off';
-        return message.reply({ embeds: [embed.Embed_queue("Queue List", nowplaying, tracksQueue, loopStatus)], allowedMentions: { repliedUser: false } });
+        return message.reply({ embeds: [embed.Embed_queue("Daftar Antrian", nowplaying, tracksQueue, loopStatus)], allowedMentions: { repliedUser: false } });
     },
 
     slashExecute(client, interaction) {
         const queue = client.player.nodes.get(interaction.guild.id);
 
         if (!queue || !queue.currentTrack)
-            return interaction.reply({ content: `❌ | There is no music currently playing.`, allowedMentions: { repliedUser: false } });
+            return interaction.reply({ content: `❌ | Gaada musik yang sedang dimainin sekarang cuy.`, allowedMentions: { repliedUser: false } });
 
 
         const tracks = queue.tracks.map((track, index) => `${++index}. ${track.title}`);
@@ -53,13 +53,13 @@ module.exports = {
         }
         else if (tracks.length > 9) {
             tracksQueue = tracks.slice(0, 10).join('\n');
-            tracksQueue += `\nand ${tracks.length - 10} other songs`;
+            tracksQueue += `\nand ${tracks.length - 10} lagu lainnya`;
         }
         else {
             tracksQueue = tracks.join('\n');
         }
 
         let loopStatus = queue.repeatMode ? (queue.repeatMode === 2 ? 'All' : 'One') : 'Off';
-        return interaction.reply({ embeds: [embed.Embed_queue("Queue List", nowplaying, tracksQueue, loopStatus)] });
+        return interaction.reply({ embeds: [embed.Embed_queue("Daftar Antrian", nowplaying, tracksQueue, loopStatus)] });
     },
 };
